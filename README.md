@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OG Image Generator
 
-## Getting Started
+Dynamic Open Graph image generator for Paradime, powered by `@vercel/og`.
 
-First, run the development server:
+## Usage
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+GET /api/og?title=What+We+Shipped+%2300&f1=Feature+1&f2=Feature+2&f3=Feature+3
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Query params
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Param   | Required | Description          |
+| ------- | -------- | -------------------- |
+| `title` | No       | Heading text (defaults to "What We Shipped") |
+| `f1`    | No       | Feature 1            |
+| `f2`    | No       | Feature 2            |
+| `f3`    | No       | Feature 3            |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Example meta tag
 
-## Learn More
+```html
+<meta property="og:image" content="https://og-image-generator-paradime.vercel.app/api/og?title=What+We+Shipped+%2301&f1=dbt+Core+Upgrades&f2=New+Lineage+View&f3=Faster+Builds" />
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Local development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Visit `http://localhost:3000/api/og?title=Hello+World` to preview.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+vercel --prod --scope paradime
+```
